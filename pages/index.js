@@ -5,7 +5,7 @@
 *  distributed to other students.
 * 
 *  Name: Shao Qiao Student ID: 145954210 Date:2023-12-08
-*  Vercel App (Deployed) Link: _____________________________________________________
+*  Vercel App (Deployed) Link:web-422assignment6part2.vercel.app
 *
 ********************************************************************************/ 
 import React from 'react';
