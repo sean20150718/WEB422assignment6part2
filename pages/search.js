@@ -19,8 +19,8 @@ export default function AdvancedSearch() {
       searchBy: "",
       geoLocation: "",
       medium: "",
-      isOnView: "",
-      isHighlight: "",
+      isOnView: false,
+      isHighlight:false,
       q: "",
     },
   });
@@ -30,8 +30,8 @@ export default function AdvancedSearch() {
       searchBy: "true",
       geoLocation: "",
       medium: "",
-      isOnView: "false",
-      isHighlight: "false",
+      isOnView: false,
+      isHighlight: false,
       q: "q",
     };
 
