@@ -1,15 +1,19 @@
-import {React,  useEffect } from "react";
+import { React, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { addToHistory } from '../lib/userData';
+
 export default function AdvancedSearch() {
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   const router = useRouter();
   const {
-    handleSubmit,  register,formState: { errors },setValue,
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue,
   } = useForm({
     defaultValues: {
       searchBy: "",
@@ -35,16 +39,12 @@ export default function AdvancedSearch() {
     for (const prop in data) {
       setValue(prop, data[prop]);
     }
-  }, []);
+  }, [setValue]); // Include setValue in the dependency array
 
-  const  submitForm =async (data) => {
-    let queryString='';
-    // if((data.searchBy))
-    //  queryString += `&searchBy=${data.searchBy}`;
-    // else queryString += `&searchBy=true`;
-    if((data.searchBy))
-    queryString += `${data.searchBy}=true`;
-  else queryString +='title=true';
+  const submitForm = async (data) => {
+    let queryString = "";
+    if (data.searchBy) queryString += `${data.searchBy}=true`;
+    else queryString += "title=true";
     if (data.geoLocation) {
       queryString += `&geoLocation=${data.geoLocation}`;
     }
@@ -55,7 +55,7 @@ export default function AdvancedSearch() {
     queryString += `&isHighlight=${data.isHighlight}`;
     queryString += `&q=${data.q}`;
     console.log(queryString);
-    setSearchHistory(await addToHistory(queryString)) ;
+    setSearchHistory(await addToHistory(queryString));
     router.push(`/artwork?${queryString}`);
   };
   return (
